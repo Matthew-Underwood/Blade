@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/gui.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/world.tscn" type="PackedScene" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="WorldRoot" parent="." instance=ExtResource( 2 )]
+
+[node name="Root" parent="." instance=ExtResource( 1 )]
