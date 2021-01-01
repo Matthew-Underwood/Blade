@@ -23,7 +23,7 @@ func buildWorld(
 			_rootTileMap.set_cell(
 				tileData.getWorldPosition().x,
 				tileData.getWorldPosition().y,
-				0,
+				tileData.getTileId(),
 				0,
 				0,
 				false,
@@ -39,7 +39,7 @@ func _process(delta):
 			get_viewport().get_mouse_position()
 		)
 		if _map.hasWorldPosition(tilePosition):
-			var tiles = _tilePicker.get_tiles(tilePosition, Vector2.ONE)
+			var tiles = _tilePicker.get_tiles(tilePosition, Vector2.ONE,1)
 			var updatedTiles = _map.updateAndGetData(tiles)
 			for updatedTile in updatedTiles:
 				var tileMaplayer = 1
@@ -49,7 +49,7 @@ func _process(delta):
 					tileMap.set_cell(
 						updatedTileLayer.getWorldPosition().x,
 						updatedTileLayer.getWorldPosition().y,
-						1,
+						updatedTileLayer.getTileId(),
 						updatedTileLayer.getFlipX(),
 						updatedTileLayer.getFlipY(),
 						false,

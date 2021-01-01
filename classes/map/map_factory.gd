@@ -16,6 +16,7 @@ func create(size : Vector2, origin : Vector2):
 			mapData[y].append([
 				_tileFactory.create(
 					0,
+					0,
 					Vector2(x,y) + origin,
 					0,
 					0

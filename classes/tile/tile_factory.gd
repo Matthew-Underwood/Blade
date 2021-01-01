@@ -10,6 +10,7 @@ func _init(origin : Vector2, tileTypes : TileTypes):
 	
 func create(
 		tileType : int,
+		tileId : int,
 		position : Vector2,
 		flipX : bool,
 		flipY : bool
@@ -80,6 +81,7 @@ func create(
 	# tileIds are sections
 	tile = _tile.new(
 		_tileTypes.tileTypeToAtlas(atlasId),
+		tileId,
 		tileIds,
 		position,
 		flipX,
