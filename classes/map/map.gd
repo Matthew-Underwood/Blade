@@ -49,6 +49,9 @@ func sectionsDiff(
 	
 func getSize() -> Vector2:
 	return _size
+
+func getWorldOrigin() -> Vector2:
+	return _offset
 	
 func hasWorldPosition(position : Vector2) -> bool:
 	var sizeX = _size.x - 1

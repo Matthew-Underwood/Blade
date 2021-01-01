@@ -39,26 +39,25 @@ func get_tiles(position: Vector2, area : Vector2) -> Array:
 func determine_tile(position: Vector2):
 	var tile
 	match position:
-		# tile 
 		_topCorner:
-			tile = _tileFactory.create(4, position, 0, 0)
+			tile = _tileFactory.create(TileTypes.TOP, position, 0, 0)
 		_leftCorner:
-			tile = _tileFactory.create(5, position, 0, 0)
+			tile = _tileFactory.create(TileTypes.LEFT, position, 1, 0)
 		_rightCorner:
-			tile = _tileFactory.create(5, position, 0, 1)
+			tile = _tileFactory.create(TileTypes.RIGHT, position, 0, 0)
 		_bottomCorner:
-			tile = _tileFactory.create(4, position, 1, 0)
+			tile = _tileFactory.create(TileTypes.BOTTOM, position, 0, 1)
 		_topLeftSide:
-			tile = _tileFactory.create(3, position, 0, 0)
+			tile = _tileFactory.create(TileTypes.TOP_LEFT, position, 0, 0)
 		_topRightSide:
-			tile = _tileFactory.create(3, position, 0, 1)
+			tile = _tileFactory.create(TileTypes.TOP_RIGHT, position, 1, 0)
 		_lowerLeftSide:
-			tile = _tileFactory.create(3, position, 1, 0)
+			tile = _tileFactory.create(TileTypes.BOTTOM_LEFT, position, 0, 1)
 		_lowerRightSide:
-			tile = _tileFactory.create(3, position, 1, 1)
+			tile = _tileFactory.create(TileTypes.BOTTOM_RIGHT, position, 1, 1)
 		_:
 			tile = _tileFactory.create(
-				randi() % 2,
+				TileTypes.FLAT,
 				position,
 				randi() % 2,
 				randi() % 2

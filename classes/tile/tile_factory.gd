@@ -1,13 +1,15 @@
 class_name Tile_Factory
 	
 var _tile
+var _tileTypes
 
 
-func _init(origin : Vector2):
+func _init(origin : Vector2, tileTypes : TileTypes):
 	_tile = load("res://classes/tile/tile.gd")
+	_tileTypes = tileTypes
 	
 func create(
-		id : int,
+		tileType : int,
 		position : Vector2,
 		flipX : bool,
 		flipY : bool
@@ -15,7 +17,8 @@ func create(
 	
 	var tile = null
 	var tileIds = []
-	var tileType = getTypeFromIdAndRotation(id ,flipX, flipY)
+	var atlasId = null
+#	var tileType = getTypeFromIdAndRotation(id ,flipX, flipY)
 	match tileType:
 		TileTypes.FLAT:
 			tileIds = [
@@ -24,22 +27,31 @@ func create(
 				TileSections.LEFT,
 				TileSections.RIGHT
 				]
+			atlasId = TileTypes.FLAT
 		TileTypes.TOP:
 			tileIds = [TileSections.BOTTOM]
+			atlasId = TileTypes.TOP
 		TileTypes.BOTTOM:
 			tileIds = [TileSections.TOP]
+			atlasId = TileTypes.TOP
 		TileTypes.LEFT:
 			tileIds = [TileSections.RIGHT]
+			atlasId = TileTypes.RIGHT
 		TileTypes.RIGHT:
 			tileIds = [TileSections.LEFT]
+			atlasId = TileTypes.RIGHT
 		TileTypes.TOP_LEFT:
 			tileIds = [TileSections.BOTTOM, TileSections.RIGHT]
+			atlasId = TileTypes.TOP_LEFT
 		TileTypes.TOP_RIGHT:
 			tileIds = [TileSections.BOTTOM, TileSections.LEFT]
+			atlasId = TileTypes.TOP_LEFT
 		TileTypes.BOTTOM_LEFT:
 			tileIds = [TileSections.TOP, TileSections.RIGHT]
+			atlasId = TileTypes.TOP_LEFT
 		TileTypes.BOTTOM_RIGHT:
 			tileIds = [TileSections.TOP, TileSections.LEFT]
+			atlasId = TileTypes.TOP_LEFT
 #		TileTypes.L_TOP_RIGHT:
 #			tileIds = [
 #				TileSections.TOP_LEFT,
@@ -66,7 +78,13 @@ func create(
 #				]
 	# 3 from id
 	# tileIds are sections
-	tile = _tile.new(id, tileIds, position, flipX, flipY)
+	tile = _tile.new(
+		_tileTypes.tileTypeToAtlas(atlasId),
+		tileIds,
+		position,
+		flipX,
+		flipY
+	)
 	return tile
 	
 func getTypeFromIdAndRotation(id : int, flipX : bool, flipY : bool) -> int:
@@ -93,15 +111,15 @@ func getDataFromId(id):
 		tileId = TileTypes.FLAT
 		flipX = 0
 		flipY = 0
-	elif id >= 4 && id <= 4:
+	elif id >= 3 && id <= 3:
 		tileId = TileTypes.TOP
-		flipX = 1
-		flipY = 0
-	elif id >= 5 && id <= 5:
-		tileId = TileTypes.LEFT
 		flipX = 0
 		flipY = 1
-	elif id >= 3 && id <= 3:
+	elif id >= 4 && id <= 4:
+		tileId = TileTypes.LEFT
+		flipX = 1
+		flipY = 0
+	elif id >= 2  && id <= 2:
 		tileId = TileTypes.TOP_LEFT
 		flipX = 2
 		flipY = 1

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://shader/apply_corner_mask.shader" type="Shader" id=1]
 [ext_resource path="res://tiles/mask/corner2.png" type="Texture" id=2]
-[ext_resource path="res://tiles/rocky/test/7.png" type="Texture" id=3]
+[ext_resource path="res://tiles/rocky/test/cornerRed2.png" type="Texture" id=3]
 
 [resource]
 shader = ExtResource( 1 )

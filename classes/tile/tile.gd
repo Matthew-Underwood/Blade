@@ -1,19 +1,19 @@
 class_name Tile
 
-var _tileSetId
+var _subTile
 var _sections
 var _position
 var _flipX
 var _flipY
 
 func _init(
-		tileSetId : int,
+		subTile : Vector2,
 		sections : Array,
 		position : Vector2,
 		flipX : bool,
 		flipY : bool
 	):
-	_tileSetId = tileSetId
+	_subTile = subTile
 	_sections = sections
 	_position = position
 	_flipX = flipX
@@ -22,12 +22,12 @@ func _init(
 func getSections() -> Array:
 	return _sections
 	
-func getTileSetId() -> int:
-	return _tileSetId
+func getSubTile() -> Vector2:
+	return _subTile
 	
 func getWorldPosition() -> Vector2:
 	return _position
-	
+
 func getFlipX() -> int:
 	return _flipX
 	
