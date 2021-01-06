@@ -22,6 +22,7 @@ func _ready():
 	var tilePicker = load("res://classes/tile_picker.gd")
 	var tileTypes = load("res://classes/tile_types.gd")
 	var tileMapLayers = world.get_node("Terrian").get_children()
+	var tileMapOutline = world.get_node("OutLine/Layer1")
 	
 	tileTypes = tileTypes.new()
 	tileFactory = tileFactory.new(origin, tileTypes)
@@ -31,7 +32,7 @@ func _ready():
 	
 	gui.setMap(map)
 	gui.setTileMapLayers(tileMapLayers)
-	world.buildWorld(map, tileMapLayers[0],tileTypes, tilePicker)
+	world.buildWorld(map, tileTypes, tileMapLayers, tileMapOutline, tilePicker)
 	
 	world.set_process(true)
 	gui.set_process(true)

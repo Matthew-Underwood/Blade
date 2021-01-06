@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tiles/tileSet/tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://tiles/tileSet/outlines.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/world.gd" type="Script" id=3]
 [ext_resource path="res://objects/test_building.tscn" type="PackedScene" id=6]
 
@@ -37,9 +38,16 @@ cell_size = Vector2( 64, 32 )
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 format = 1
 
+[node name="OutLine" type="Node" parent="."]
+
+[node name="Layer1" type="TileMap" parent="OutLine"]
+mode = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 64, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+format = 1
+
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Node2D" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 477.629, 344.767 )
-
-[node name="Node" type="Node" parent="."]
