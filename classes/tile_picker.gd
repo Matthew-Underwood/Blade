@@ -33,7 +33,7 @@ func get_tiles(position: Vector2, area : Vector2, tileId : int) -> Array:
 	for y in range(minTile.y, maxTile.y + 1):
 		for x in range(minTile.x, maxTile.x + 1):
 			if _map.hasWorldPosition(Vector2(x, y)):
-				tiles.append(determine_tile(Vector2(x, y),tileId))
+				tiles.append(determine_tile(Vector2(x, y), tileId))
 	return tiles
 	
 func determine_tile(position: Vector2, tileId : int):

@@ -12,10 +12,10 @@ var _tileFlipXNodes = []
 var _tileFlipYNodes = []
 
 func _ready():
-	var worldCoordinates = get_node("DebugPanel/Container/WorldCoordinates")
-	var localCoordinates = get_node("DebugPanel/Container/LocalCoordinates")
-	var layers = get_node("DebugPanel/Container/HBoxContainer/LayerData/Layers")
-	var tileLayers = get_node("DebugPanel/Container/HBoxContainer/TileData/Layers")
+	var worldCoordinates = get_node("Container/WorldCoordinates")
+	var localCoordinates = get_node("Container/LocalCoordinates")
+	var layers = get_node("Container/HBoxContainer/LayerData/Layers")
+	var tileLayers = get_node("Container/HBoxContainer/TileData/Layers")
 	
 	_guiWorldXValue = worldCoordinates.get_node("XValue")
 	_guiWorldYValue = worldCoordinates.get_node("YValue")

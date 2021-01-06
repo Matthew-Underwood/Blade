@@ -4,9 +4,16 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var world = get_node("WorldRoot")
-	var gui = get_node("Root")
+	var gui = get_node("Root/DebugPanel")
+	var tilesGui = get_node("Root/TilesPanel/Tiles")
 	world.set_process(false)
 	gui.set_process(false)
+	
+	var tileId = 0
+	var tiles = tilesGui.get_children()
+	for tile in tiles:
+		tile.setTileId(tileId, world)
+		tileId += 1
 	
 	var origin = Vector2(27,0)
 	var size = Vector2(10,10)
