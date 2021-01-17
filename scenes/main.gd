@@ -17,22 +17,28 @@ func _ready():
 	
 	var origin = Vector2(27,0)
 	var size = Vector2(10,10)
+	var heightFactory = load("res://classes/tile/height_factory.gd")
 	var tileFactory = load("res://classes/tile/tile_factory.gd")
+	var layerFactory = load("res://classes/tile/layers_factory.gd")
 	var mapFactory = load("res://classes/map/map_factory.gd")
 	var tilePicker = load("res://classes/tile_picker.gd")
 	var tileTypes = load("res://classes/tile_types.gd")
-	var tileMapLayers = world.get_node("Terrian").get_children()
+	#var tileMapLayers = world.get_node("Flat").get_children()
 	var tileMapOutline = world.get_node("OutLine/Layer1")
 	
 	tileTypes = tileTypes.new()
 	tileFactory = tileFactory.new(origin, tileTypes)
-	mapFactory = mapFactory.new(tileFactory)
+	layerFactory = layerFactory.new(tileFactory)
+	
+	heightFactory = heightFactory.new(3, layerFactory)
+	mapFactory = mapFactory.new(heightFactory)
 	var map = mapFactory.create(size, origin)
 	tilePicker = tilePicker.new(tileFactory, map)
 	
-	gui.setMap(map)
-	gui.setTileMapLayers(tileMapLayers)
-	world.buildWorld(map, tileTypes, tileMapLayers, tileMapOutline, tilePicker)
+	#TODO fix gui debugging
+	#gui.setMap(map)
+	#gui.setTileMapLayers(tileMapLayers)
+	world.buildWorld(map, tileTypes, tileMapOutline, tilePicker)
 	
 	world.set_process(true)
-	gui.set_process(true)
+	#gui.set_process(true)

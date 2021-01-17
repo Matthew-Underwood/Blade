@@ -1,4 +1,4 @@
-class_name Tile_Factory
+class_name TileFactory
 	
 var _tile
 var _tileTypes

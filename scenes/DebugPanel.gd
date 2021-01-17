@@ -59,11 +59,11 @@ func _process(delta):
 		removeLabelValue(_tileFlipYNodes)
 			
 		# sections per cell
-		var layers = mapData[localCoordinates.y][localCoordinates.x]
+		var layer = mapData[localCoordinates.y][localCoordinates.x]
 		var sectionLayerNum = 0
 		var tileMapLayerNum = 0
-		for layer in layers:
-			for section in layer.getSections():
+		for tile in layer.getTerrianTiles():
+			for section in tile.getSections():
 				addLabelToNode(_sectionNodes[sectionLayerNum], section)
 			sectionLayerNum += 1
 			

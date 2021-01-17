@@ -10,6 +10,26 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Height",
+"language": "GDScript",
+"path": "res://classes/tile/height.gd"
+}, {
+"base": "Reference",
+"class": "HeightFactory",
+"language": "GDScript",
+"path": "res://classes/tile/height_factory.gd"
+}, {
+"base": "Reference",
+"class": "Layers",
+"language": "GDScript",
+"path": "res://classes/tile/layers.gd"
+}, {
+"base": "Reference",
+"class": "LayersFactory",
+"language": "GDScript",
+"path": "res://classes/tile/layers_factory.gd"
+}, {
+"base": "Reference",
 "class": "Map",
 "language": "GDScript",
 "path": "res://classes/map/map.gd"
@@ -25,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://classes/tile/tile.gd"
 }, {
 "base": "Reference",
+"class": "TileFactory",
+"language": "GDScript",
+"path": "res://classes/tile/tile_factory.gd"
+}, {
+"base": "Reference",
 "class": "TilePicker",
 "language": "GDScript",
 "path": "res://classes/tile_picker.gd"
@@ -38,20 +63,19 @@ _global_script_classes=[ {
 "class": "TileTypes",
 "language": "GDScript",
 "path": "res://classes/tile_types.gd"
-}, {
-"base": "Reference",
-"class": "Tile_Factory",
-"language": "GDScript",
-"path": "res://classes/tile/tile_factory.gd"
 } ]
 _global_script_class_icons={
+"Height": "",
+"HeightFactory": "",
+"Layers": "",
+"LayersFactory": "",
 "Map": "",
 "MapFactory": "",
 "Tile": "",
+"TileFactory": "",
 "TilePicker": "",
 "TileSections": "",
-"TileTypes": "",
-"Tile_Factory": ""
+"TileTypes": ""
 }
 
 [application]
