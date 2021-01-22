@@ -5,7 +5,7 @@ var _guiWorldXValue
 var _guiWorldYValue
 var _guiLocalXValue
 var _guiLocalYValue
-var _map
+var _map : Map
 var _sectionNodes = []
 var _tileIdNodes = []
 var _tileFlipXNodes = []
@@ -40,7 +40,6 @@ func setTileMapLayers(tileMapLayers : Array):
 func _process(delta):
 	
 	var size = _map.getSize()
-	var mapData = _map.getData()
 	var worldCoordinates = _tileMapLayers[0].world_to_map(
 			get_viewport().get_mouse_position()
 		)
@@ -59,7 +58,7 @@ func _process(delta):
 		removeLabelValue(_tileFlipYNodes)
 			
 		# sections per cell
-		var layer = mapData[localCoordinates.y][localCoordinates.x]
+		var layer = _map.getDataFromPos(worldCoordinates).getHeight(0)
 		var sectionLayerNum = 0
 		var tileMapLayerNum = 0
 		for tile in layer.getTerrianTiles():

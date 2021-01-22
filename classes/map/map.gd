@@ -12,7 +12,7 @@ func _init(data : Array, size : Vector2, offset : Vector2):
 func getAll() -> Array:
 	return _data
 	
-func getDataFromPos(worldPos : Vector2) -> Array:
+func getDataFromPos(worldPos : Vector2) -> Height:
 	var localPos = worldPositionToLocal(worldPos)
 	return _data[localPos.y][localPos.x]
 

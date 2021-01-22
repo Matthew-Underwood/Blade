@@ -39,20 +39,24 @@ func _process(delta):
 				_tileId
 			)
 			for tile in tiles:
-				var height = _map.getDataFromPos(tilePosition)
+				var tileWorldPosition = tile.getWorldPosition()
+				var height = _map.getDataFromPos(tileWorldPosition)
 				var heightLayer = height.getHeight(0)
 				heightLayer.updateTerrianTiles(tile)
-				removeAllTiles(tilePosition)
+				removeAllTiles(tileWorldPosition)
 				buildTiles(height)
+
 
 func setTileId(id : int):
 	_tileId = id
+
 	
 func removeAllTiles(worldPosition : Vector2):
 	for heightNode in _heightNodes:
 		var layerNodes = heightNode.get_children()
 		for layerNode in layerNodes:
 			layerNode.set_cell(worldPosition.x, worldPosition.y, -1)
+
 
 func buildTiles(tileHeights : Height):
 	
