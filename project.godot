@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://classes/map/map_factory.gd"
 }, {
 "base": "Reference",
+"class": "Placement",
+"language": "GDScript",
+"path": "res://classes/placement/placement.gd"
+}, {
+"base": "Reference",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://classes/tile/tile.gd"
@@ -71,6 +76,7 @@ _global_script_class_icons={
 "LayersFactory": "",
 "Map": "",
 "MapFactory": "",
+"Placement": "",
 "Tile": "",
 "TileFactory": "",
 "TilePicker": "",
