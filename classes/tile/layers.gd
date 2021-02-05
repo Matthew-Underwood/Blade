@@ -7,7 +7,7 @@ var _worldPosition : Vector2
 func _init(terrianTiles : Array, overlayTile : Tile, worldPosition : Vector2):
 	_terrianTiles = terrianTiles
 	_overlayTile = overlayTile
-	_worldPosition	= worldPosition
+	_worldPosition = worldPosition
 
 func getWorldPosition() -> Vector2:
 	return _worldPosition

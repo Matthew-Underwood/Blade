@@ -16,6 +16,14 @@ func getMaxHeight() -> int:
 func getHeight(height : int) -> Layers:
 	assert(validateHeight(height))
 	return _data[height]
+	
+func getCurrentHeight() -> int:
+	var i = 0
+	for data in _data:
+		if data == null:
+			return i
+		i = i + 1
+	return i
 
 func setHeight(height : int, layer : Layers):
 	assert(validateHeight(height))

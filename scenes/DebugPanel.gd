@@ -16,7 +16,7 @@ func _ready():
 	var localCoordinates = get_node("Container/LocalCoordinates")
 	var layers = get_node("Container/HBoxContainer/LayerData/Layers")
 	var tileLayers = get_node("Container/HBoxContainer/TileData/Layers")
-	
+
 	_guiWorldXValue = worldCoordinates.get_node("XValue")
 	_guiWorldYValue = worldCoordinates.get_node("YValue")
 	_guiLocalXValue = localCoordinates.get_node("XValue")
@@ -30,15 +30,15 @@ func _ready():
 		_tileIdNodes.append(tileIdNode)
 		_tileFlipXNodes.append(tileFlipNodeX)
 		_tileFlipYNodes.append(tileFlipNodeY)
-	
+
 func setMap(map : Map):
 	_map = map
 
 func setTileMapLayers(tileMapLayers : Array):
 	_tileMapLayers = tileMapLayers
-	
+
 func _process(delta):
-	
+
 	var size = _map.getSize()
 	var worldCoordinates = _tileMapLayers[0].world_to_map(
 			get_viewport().get_mouse_position()
@@ -48,15 +48,15 @@ func _process(delta):
 	_guiWorldYValue.text = str(worldCoordinates.y)
 	_guiLocalXValue.text = str(localCoordinates.x)
 	_guiLocalYValue.text = str(localCoordinates.y)
-	
+
 	if (localCoordinates.x >= 0 && localCoordinates.x <= (size.x - 1) &&
 		localCoordinates.y >= 0 && localCoordinates.y <= (size.y - 1)):
-			
+
 		removeChildren(_sectionNodes)
 		removeChildren(_tileIdNodes)
 		removeLabelValue(_tileFlipXNodes)
 		removeLabelValue(_tileFlipYNodes)
-			
+
 		# sections per cell
 		var layer = _map.getDataFromPos(worldCoordinates).getHeight(0)
 		var sectionLayerNum = 0
@@ -65,7 +65,7 @@ func _process(delta):
 			for section in tile.getSections():
 				addLabelToNode(_sectionNodes[sectionLayerNum], section)
 			sectionLayerNum += 1
-			
+
 		for tileMapLayer in _tileMapLayers:
 			var tileId = tileMapLayer.get_cellv(worldCoordinates)
 			addLabelToNode(_tileIdNodes[tileMapLayerNum], tileId)
@@ -97,4 +97,3 @@ func addLabelToNode(node : Node, value):
 	var label = Label.new()
 	label.text = str(value)
 	node.add_child(label)
-	

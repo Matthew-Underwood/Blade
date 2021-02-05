@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AtlasResolver",
+"language": "GDScript",
+"path": "res://classes/tile/atlas/atlas_resolver.gd"
+}, {
+"base": "Reference",
+"class": "DiamondPlacement",
+"language": "GDScript",
+"path": "res://classes/placement/new_script.gd"
+}, {
+"base": "AtlasResolver",
+"class": "FlatTileAtlasResolver",
+"language": "GDScript",
+"path": "res://classes/tile/atlas/flat_tile_atlas_resolver.gd"
+}, {
+"base": "Reference",
 "class": "Height",
 "language": "GDScript",
 "path": "res://classes/tile/height.gd"
@@ -44,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://classes/placement/placement.gd"
 }, {
+"base": "AtlasResolver",
+"class": "SlopeTileAtlasResolver",
+"language": "GDScript",
+"path": "res://classes/tile/atlas/slope_tile_atlas_resolver.gd"
+}, {
 "base": "Reference",
 "class": "Tile",
 "language": "GDScript",
@@ -53,6 +73,11 @@ _global_script_classes=[ {
 "class": "TileFactory",
 "language": "GDScript",
 "path": "res://classes/tile/tile_factory.gd"
+}, {
+"base": "Reference",
+"class": "TileHeight",
+"language": "GDScript",
+"path": "res://classes/tile_height.gd"
 }, {
 "base": "Reference",
 "class": "TilePicker",
@@ -65,11 +90,19 @@ _global_script_classes=[ {
 "path": "res://classes/tile/tile_sections.gd"
 }, {
 "base": "Reference",
+"class": "TileSectionsResolver",
+"language": "GDScript",
+"path": "res://classes/tile/tile_sections_resolver.gd"
+}, {
+"base": "Reference",
 "class": "TileTypes",
 "language": "GDScript",
 "path": "res://classes/tile_types.gd"
 } ]
 _global_script_class_icons={
+"AtlasResolver": "",
+"DiamondPlacement": "",
+"FlatTileAtlasResolver": "",
 "Height": "",
 "HeightFactory": "",
 "Layers": "",
@@ -77,10 +110,13 @@ _global_script_class_icons={
 "Map": "",
 "MapFactory": "",
 "Placement": "",
+"SlopeTileAtlasResolver": "",
 "Tile": "",
 "TileFactory": "",
+"TileHeight": "",
 "TilePicker": "",
 "TileSections": "",
+"TileSectionsResolver": "",
 "TileTypes": ""
 }
 

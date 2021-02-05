@@ -1,7 +1,5 @@
 extends Node
-
 var _tilePicker : TilePicker
-var _tileTypes : TileTypes
 var _map : Map
 var _tileId : int
 var _tileMaps : Array
@@ -10,13 +8,11 @@ var _heightNodes : Array
 
 func buildWorld(
 		map : Map,
-		tileTypes : TileTypes,
 		tileMapOutLine : TileMap,
 		tilePicker : TilePicker
 	):
 		
 	_map = map
-	_tileTypes = tileTypes
 	_tileMapOutLine = tileMapOutLine
 	_tilePicker = tilePicker
 	_tileId = 0
@@ -75,7 +71,7 @@ func buildTiles(tileHeights : Height):
 					tile.getFlipX(),
 					tile.getFlipY(),
 					false,
-					tile.getSubTile()
+					tile.getAtlasTile()
 				)
 						
 				_tileMapOutLine.set_cell(
@@ -85,5 +81,5 @@ func buildTiles(tileHeights : Height):
 					false,
 					false,
 					false,
-					tileLayer.getOverlayTile().getSubTile()
+					tileLayer.getOverlayTile().getAtlasTile()
 				)
