@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "DiamondPlacement",
 "language": "GDScript",
-"path": "res://classes/placement/new_script.gd"
+"path": "res://classes/placement/diamond_placement.gd"
 }, {
 "base": "AtlasResolver",
 "class": "FlatTileAtlasResolver",
@@ -53,11 +53,6 @@ _global_script_classes=[ {
 "class": "MapFactory",
 "language": "GDScript",
 "path": "res://classes/map/map_factory.gd"
-}, {
-"base": "Reference",
-"class": "Placement",
-"language": "GDScript",
-"path": "res://classes/placement/placement.gd"
 }, {
 "base": "AtlasResolver",
 "class": "SlopeTileAtlasResolver",
@@ -109,7 +104,6 @@ _global_script_class_icons={
 "LayersFactory": "",
 "Map": "",
 "MapFactory": "",
-"Placement": "",
 "SlopeTileAtlasResolver": "",
 "Tile": "",
 "TileFactory": "",

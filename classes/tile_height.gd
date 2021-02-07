@@ -23,10 +23,12 @@ func create(selectedTilePosition : Vector2, tileArea : Vector2):
 		)
 		
 	for selectedTilePosition in selectedTilePositions:
+		var updateTiles
+		
 		if typeof(selectedTilePositions[selectedTilePosition]) != TYPE_ARRAY:
-			var updateTiles = [selectedTilePositions[selectedTilePosition]]
+			updateTiles = [selectedTilePositions[selectedTilePosition]]
 		else:
-			var updateTiles = selectedTilePositions[selectedTilePosition]
+			updateTiles = selectedTilePositions[selectedTilePosition]
 			
 		for updateTile in updateTiles:
 			var tileToCopy = _map.getDataFromPos(updateTile)

@@ -12,26 +12,47 @@ func _init(tileFactory : TileFactory):
 # need to have two layer factories, one for flat tiles and one for slopes
 # figure out more elegant way of passing in array tiles in map creation with defaults
 
-func create(tilesToUpdate : Array) -> Layers:
+func createFromTiles(tilesToUpdate : Array) -> Layers:
+	
+	if tilesToUpdate.empty():
+		assert(false, "No tiles to update")
+		
 	var tiles = []
 	var worldPosition = null
 	for tileToUpdate in tilesToUpdate:
-		if worldPosition == null:
-			worldPosition = tileToUpdate.getWorldPosition()
 		tiles.append(
 			_tileFactory.create(
 				tileToUpdate.getTileType(),
 				tileToUpdate.getTileId(),
 				tileToUpdate.getWorldPosition(),
-				tileToUpdate.flip()
+				tileToUpdate.getFlip()
 				)
 			)
 	
-	var firstTile = tiles[0]
-	var overlayTile = _tileFactory.create(
-		firstTile.getTileType(),
+	var overlayTile = createOverLay(tilesToUpdate[0])
+	return _layers.new(tiles, overlayTile, worldPosition)
+
+func create(tile : Tile) -> Layers:
+	var tiles = []
+	tiles.append(
+		_tileFactory.create(
+			tile.getTileType(),
+			tile.getTileId(),
+			tile.getWorldPosition(),
+			tile.getFlip()
+		)
+	)
+	var overlayTile = createOverLay(tile)
+	return _layers.new(tiles, overlayTile, tile.getWorldPosition())
+	
+
+#TODO need to work on this
+func createOverLay(tile : Tile) -> Tile:
+	return _tileFactory.create(
+		tile.getTileType(),
 		0,
-		firstTile.getWorldPosition(),
+		tile.getWorldPosition(),
 		Vector2.ZERO
 	)
-	return _layers.new(tiles, overlayTile, worldPosition)
+	
+

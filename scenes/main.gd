@@ -19,7 +19,12 @@ func _ready():
 	var size = Vector2(10, 10)
 	
 	var sectionsResolver = load("res://classes/tile/tile_sections_resolver.gd")
-	var flatTileAtlasResolver = load("res://classes/tile/flat_tile_atlas_resolver.gd")
+	var flatTileAtlasResolver = load("res://classes/tile/atlas/flat_tile_atlas_resolver.gd")
+	var placement = load("res://classes/placement/diamond_placement.gd")
+	
+	flatTileAtlasResolver = flatTileAtlasResolver.new()
+	sectionsResolver = sectionsResolver.new()
+	
 	var slopeTileAtlasResolver = load("res://classes/tile/slope_tile_atlas_resolver.gd")
 	
 	var heightFactory = load("res://classes/tile/height_factory.gd")
@@ -32,18 +37,26 @@ func _ready():
 
 	var flatTileFactory = tileFactory.new(sectionsResolver, flatTileAtlasResolver)
 	var slopeTileFactory = tileFactory.new(sectionsResolver, slopeTileAtlasResolver)
-	var flatLayerFactory = layerFactory.new(tileFactory)
-	var slopeLayerFactory = layerFactory.new(tileFactory)
+	var flatLayerFactory = layerFactory.new(flatTileFactory)
+	var slopeLayerFactory = layerFactory.new(slopeTileFactory)
 
 	heightFactory = heightFactory.new(3, flatLayerFactory)
-	mapFactory = mapFactory.new(heightFactory)
-	var map = mapFactory.create(size, origin)
-	tilePicker = tilePicker.new(tileFactory, map)
+	mapFactory = mapFactory.new(heightFactory, flatTileFactory, origin)
+	placement = placement.new()
+	
+	var tile = flatTileFactory.create(
+		DiamondPlacement.SURROUNDED,
+		0,
+		Vector2.ZERO,
+		Vector2.ZERO
+	)
+	
+	var map = mapFactory.create(size, tile)
 
 	#TODO fix gui debugging
 	gui.setMap(map)
 	gui.setTileMapLayers(tileMapLayers)
-	world.buildWorld(map, tileMapOutline, tilePicker)
+	world.buildWorld(map, tileMapOutline, placement, flatTileFactory)
 
 	world.set_process(true)
 	gui.set_process(true)

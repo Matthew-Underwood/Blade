@@ -7,7 +7,7 @@ var _atlasResolver : AtlasResolver
 
 func _init(
 	sectionsResolver : TileSectionsResolver,
-	 atlasResolver : AtlasResolver
+	atlasResolver : AtlasResolver
 ):
 	_tile = load("res://classes/tile/tile.gd")
 	_sectionsResolver = sectionsResolver
@@ -18,13 +18,14 @@ func create(
 	tileId : int,
 	position : Vector2,
 	flip : Vector2
-	) -> Tile:
-	
-	return _tile.new(
+) -> Tile:
+	var atlasId = _atlasResolver.resolve(tileType)
+	var tile = _tile.new(
 		tileType,
-		_atlasResolver.resolve(tileType),
+		atlasId,
 		tileId,
 		_sectionsResolver.resolve(tileType),
 		position,
 		flip
 	)
+	return tile

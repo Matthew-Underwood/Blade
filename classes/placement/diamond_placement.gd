@@ -11,34 +11,37 @@ const LEFT = 7
 const SURROUNDED = 8
 
 var _placementSize : Vector2
+
 var _placementTiles = {
-		TOP_LEFT = null,
-		TOP_RIGHT = null,
-		BOTTOM_LEFT = null,
-		BOTTOM_RIGHT = null,
-		LEFT = [],
-		RIGHT = [],
-		TOP = [],
-		BOTTOM = [],
-		SURROUNDED = []
+		TOP_LEFT : null,
+		TOP_RIGHT : null,
+		BOTTOM_LEFT : null,
+		BOTTOM_RIGHT : null,
+		LEFT : [],
+		RIGHT : [],
+		TOP : [],
+		BOTTOM : [],
+		SURROUNDED : []
 	}
 
 func calculatePositions(clickedPosition : Vector2, placementSize : Vector2) -> Dictionary:
 	
-	_placementSize = placementSize
 	var positions = []
-	
+	_placementSize = placementSize
 	var difference = Vector2(
 		floor(_placementSize.x / 2), 
 		floor(_placementSize.y / 2)
 	)
-	var topLeftPosition = clickedPosition - difference
+	var topLeftPosition = Vector2(
+		clickedPosition.x - difference.x,
+		clickedPosition.y - difference.y
+	)
 	
-	for y in range(1, _placementSize.y + 1):
-		for x in range(1, _placementSize.x + 1):
+	for y in range(_placementSize.y):
+		for x in range(_placementSize.x):
 			var placementPosition = Vector2(
-				x * topLeftPosition.x,
-				y * topLeftPosition.y
+				x + topLeftPosition.x,
+				y + topLeftPosition.y
 			)
 			positions.append(placementPosition)
 			
