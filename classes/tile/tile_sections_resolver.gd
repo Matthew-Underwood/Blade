@@ -3,27 +3,27 @@ class_name TileSectionsResolver
 func resolve(tileType : int) -> Array:
 	var tileSections = []
 	match tileType:
-		TileTypes.FLAT:
+		DiamondPlacement.SURROUNDED:
 			tileSections = [
 				TileSections.TOP,
 				TileSections.BOTTOM,
 				TileSections.LEFT,
 				TileSections.RIGHT
 				]
-		TileTypes.TOP:
+		DiamondPlacement.TOP:
 			tileSections = [TileSections.BOTTOM]
-		TileTypes.BOTTOM:
+		DiamondPlacement.BOTTOM:
 			tileSections = [TileSections.TOP]
-		TileTypes.LEFT:
+		DiamondPlacement.LEFT:
 			tileSections = [TileSections.RIGHT]
-		TileTypes.RIGHT:
+		DiamondPlacement.RIGHT:
 			tileSections = [TileSections.LEFT]
-		TileTypes.TOP_LEFT:
+		DiamondPlacement.TOP_LEFT:
 			tileSections = [TileSections.BOTTOM, TileSections.RIGHT]
-		TileTypes.TOP_RIGHT:
+		DiamondPlacement.TOP_RIGHT:
 			tileSections = [TileSections.BOTTOM, TileSections.LEFT]
-		TileTypes.BOTTOM_LEFT:
+		DiamondPlacement.BOTTOM_LEFT:
 			tileSections = [TileSections.TOP, TileSections.RIGHT]
-		TileTypes.BOTTOM_RIGHT:
+		DiamondPlacement.BOTTOM_RIGHT:
 			tileSections = [TileSections.TOP, TileSections.LEFT]
 	return tileSections

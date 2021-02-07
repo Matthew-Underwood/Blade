@@ -48,11 +48,12 @@ func _process(delta):
 				
 				for updateTile in updateTiles:
 					var tile = determine_tile(updateTile, selectedTilePosition)
-					var height = _map.getDataFromPos(updateTile)
-					var heightLayer = height.getHeight(0)
-					heightLayer.updateTerrianTiles(tile)
-					removeAllTiles(updateTile)
-					buildTiles(height)
+					if _map.hasWorldPosition(updateTile):
+						var height = _map.getDataFromPos(updateTile)
+						var heightLayer = height.getHeight(0)
+						heightLayer.updateTerrianTiles(tile)
+						removeAllTiles(updateTile)
+						buildTiles(height)
 
 
 func determine_tile(position: Vector2, type : int):
