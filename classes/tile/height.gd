@@ -1,14 +1,19 @@
 class_name Height
 
 var _maxHeight : int
+var _worldPosition : Vector2
 var _data : Array
 
-func _init(data : Array, maxHeight : int):
+func _init(data : Array, maxHeight : int, worldPosition : Vector2):
 	_data = data
 	_maxHeight = maxHeight
+	_worldPosition = worldPosition
 	
 func getAll() -> Array:
 	return _data
+	
+func getWorldPosition() -> Vector2:
+	return _worldPosition
 	
 func getMaxHeight() -> int:
 	return _maxHeight
@@ -21,16 +26,10 @@ func hasHeight(height : int) -> bool:
 	return validateHeight(height)
 	
 func getCurrentHeight() -> int:
-	var i = 0
-	for data in _data:
-		if data == null:
-			return i
-		i = i + 1
-	return i
+	return _data.size() - 1
 
-func setHeight(height : int, layer : Layers):
-	assert(validateHeight(height))
-	_data[height] = layer
+func increaseHeight(layer : Layers):
+	_data.append(layer)
 	
 func validateHeight(height : int) -> bool:
 	return height >= 0 && height < _data.size()

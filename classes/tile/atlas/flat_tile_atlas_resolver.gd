@@ -1,4 +1,4 @@
-class_name FlatTileAtlasResolver extends AtlasResolver
+class_name FlatTileAtlasResolver
 
 func resolve(tileType : int) -> Vector2:
 	var atlasPosition

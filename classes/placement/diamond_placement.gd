@@ -18,10 +18,10 @@ func calculatePositions(clickedPosition : Vector2, placementSize : Vector2) -> D
 		TOP_RIGHT : [],
 		BOTTOM_LEFT : [],
 		BOTTOM_RIGHT : [],
-		LEFT : null,
-		RIGHT : null,
-		TOP : null,
-		BOTTOM : null,
+		LEFT : [],
+		RIGHT : [],
+		TOP : [],
+		BOTTOM : [],
 		SURROUNDED : []
 	}
 	
@@ -44,13 +44,13 @@ func calculatePositions(clickedPosition : Vector2, placementSize : Vector2) -> D
 				y + topLeftPosition.y
 			)
 			if y == 0 && x == 0:
-				placementTiles[TOP] = placementPosition
+				placementTiles[TOP].append(placementPosition)
 			elif y == 0 && x == sizeX:
-				placementTiles[RIGHT] = placementPosition
+				placementTiles[RIGHT].append(placementPosition)
 			elif y == sizeY && x == 0:
-				placementTiles[LEFT] = placementPosition
+				placementTiles[LEFT].append(placementPosition)
 			elif y == sizeY && x == sizeX:
-				placementTiles[BOTTOM] = placementPosition
+				placementTiles[BOTTOM].append(placementPosition)
 			elif y == 0:
 				placementTiles[TOP_RIGHT].append(placementPosition)
 			elif x == 0:

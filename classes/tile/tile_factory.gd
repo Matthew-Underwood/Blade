@@ -2,12 +2,12 @@ class_name TileFactory
 	
 var _tile
 var _sectionsResolver : TileSectionsResolver
-var _atlasResolver : AtlasResolver
+var _atlasResolver
 
 
 func _init(
 	sectionsResolver : TileSectionsResolver,
-	atlasResolver : AtlasResolver
+	atlasResolver
 ):
 	_tile = load("res://classes/tile/tile.gd")
 	_sectionsResolver = sectionsResolver

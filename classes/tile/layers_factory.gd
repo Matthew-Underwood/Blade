@@ -18,7 +18,6 @@ func createFromTiles(tilesToUpdate : Array) -> Layers:
 		assert(false, "No tiles to update")
 		
 	var tiles = []
-	var worldPosition = null
 	for tileToUpdate in tilesToUpdate:
 		tiles.append(
 			_tileFactory.create(
@@ -30,7 +29,7 @@ func createFromTiles(tilesToUpdate : Array) -> Layers:
 			)
 	
 	var overlayTile = createOverLay(tilesToUpdate[0])
-	return _layers.new(tiles, overlayTile, worldPosition)
+	return _layers.new(tiles, overlayTile)
 
 func create(tile : Tile) -> Layers:
 	var tiles = []
@@ -43,7 +42,7 @@ func create(tile : Tile) -> Layers:
 		)
 	)
 	var overlayTile = createOverLay(tile)
-	return _layers.new(tiles, overlayTile, tile.getWorldPosition())
+	return _layers.new(tiles, overlayTile)
 	
 
 #TODO need to work on this

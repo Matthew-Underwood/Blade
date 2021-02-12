@@ -2,16 +2,11 @@ class_name Layers
 
 var _terrianTiles : Array
 var _overlayTile : Tile
-var _worldPosition : Vector2
 
-func _init(terrianTiles : Array, overlayTile : Tile, worldPosition : Vector2):
+func _init(terrianTiles : Array, overlayTile : Tile):
 	_terrianTiles = terrianTiles
 	_overlayTile = overlayTile
-	_worldPosition = worldPosition
 
-func getWorldPosition() -> Vector2:
-	return _worldPosition
-	
 func updateTerrianTiles(tile : Tile):
 	var sections = tile.getSections().duplicate(true)
 	var tiles = _terrianTiles.size()

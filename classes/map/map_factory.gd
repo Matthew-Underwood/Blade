@@ -26,7 +26,8 @@ func create(size : Vector2, tile : Tile) -> Map:
 						tile.getTileId(),
 						Vector2(x,y) + _origin,
 						tile.getFlip()
-					)
+					),
+					Vector2(x,y) + _origin
 				)
 			)
 	return map.new(mapData, size, _origin)

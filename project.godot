@@ -10,16 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "AtlasResolver",
-"language": "GDScript",
-"path": "res://classes/tile/atlas/atlas_resolver.gd"
-}, {
-"base": "Reference",
 "class": "DiamondPlacement",
 "language": "GDScript",
 "path": "res://classes/placement/diamond_placement.gd"
 }, {
-"base": "AtlasResolver",
+"base": "Reference",
+"class": "FlatTileAction",
+"language": "GDScript",
+"path": "res://classes/tile/placement/action/flat_tile_action.gd"
+}, {
+"base": "Reference",
 "class": "FlatTileAtlasResolver",
 "language": "GDScript",
 "path": "res://classes/tile/atlas/flat_tile_atlas_resolver.gd"
@@ -54,7 +54,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://classes/map/map_factory.gd"
 }, {
-"base": "AtlasResolver",
+"base": "Reference",
+"class": "SlopeTileAction",
+"language": "GDScript",
+"path": "res://classes/tile/placement/action/slope_tile_action.gd"
+}, {
+"base": "Reference",
 "class": "SlopeTileAtlasResolver",
 "language": "GDScript",
 "path": "res://classes/tile/atlas/slope_tile_atlas_resolver.gd"
@@ -80,6 +85,11 @@ _global_script_classes=[ {
 "path": "res://classes/tile_picker.gd"
 }, {
 "base": "Reference",
+"class": "TilePlacementResolver",
+"language": "GDScript",
+"path": "res://classes/tile/placement/tile_placement_resolver.gd"
+}, {
+"base": "Reference",
 "class": "TileSections",
 "language": "GDScript",
 "path": "res://classes/tile/tile_sections.gd"
@@ -95,8 +105,8 @@ _global_script_classes=[ {
 "path": "res://classes/tile_types.gd"
 } ]
 _global_script_class_icons={
-"AtlasResolver": "",
 "DiamondPlacement": "",
+"FlatTileAction": "",
 "FlatTileAtlasResolver": "",
 "Height": "",
 "HeightFactory": "",
@@ -104,11 +114,13 @@ _global_script_class_icons={
 "LayersFactory": "",
 "Map": "",
 "MapFactory": "",
+"SlopeTileAction": "",
 "SlopeTileAtlasResolver": "",
 "Tile": "",
 "TileFactory": "",
 "TileHeight": "",
 "TilePicker": "",
+"TilePlacementResolver": "",
 "TileSections": "",
 "TileSectionsResolver": "",
 "TileTypes": ""

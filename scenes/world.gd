@@ -1,31 +1,31 @@
 extends Node
 
-var _diamondPlacement : DiamondPlacement
-var _tileFactory : TileFactory
 var _map : Map
 var _tileId : int
 var _tileMaps : Array
 var _tileMapOutLine : TileMap
 var _heightNodes : Array
+var _flatTilePlacementResolver : TilePlacementResolver
+var _slopeTilePlacementResolver : TilePlacementResolver
 
 func buildWorld(
 		map : Map,
 		tileMapOutLine : TileMap,
-		diamondPlacement : DiamondPlacement,
-		tileFactory : TileFactory
+		flatTilePlacementResolver : TilePlacementResolver,
+		slopeTilePlacementResolver : TilePlacementResolver
 	):
 		
 	_map = map
 	_tileMapOutLine = tileMapOutLine
-	_diamondPlacement = diamondPlacement
-	_tileFactory = tileFactory
+	_flatTilePlacementResolver = flatTilePlacementResolver
+	_slopeTilePlacementResolver = slopeTilePlacementResolver
 	
 	_tileId = 0
-	var mapData = map.getAll()
+	var mapData = _map.getAll()
 	_heightNodes = get_node("Height").get_children()
 	
-	for y in range(map.getSize().y):
-		for x in range(map.getSize().x):
+	for y in range(_map.getSize().y):
+		for x in range(_map.getSize().x):
 			buildTiles(mapData[y][x])
 	
 func _process(delta):
@@ -34,61 +34,28 @@ func _process(delta):
 			get_viewport().get_mouse_position()
 		)
 		if _map.hasWorldPosition(tilePosition):
-			var selectedTilePositions = _diamondPlacement.calculatePositions(
+			var placedTiles
+			# Very grim, need to work on this
+			if _tileId != 3:
+				placedTiles = _flatTilePlacementResolver.resolve(
 					tilePosition,
-					Vector2(3,3)
+					Vector2(3,3),
+					_tileId
+				)
+			else:
+				placedTiles = _slopeTilePlacementResolver.resolve(
+					tilePosition,
+					Vector2(3,3),
+					_tileId
 				)
 			
-			for selectedTilePosition in selectedTilePositions:
-				var updateTiles = []
-				if typeof(selectedTilePositions[selectedTilePosition]) != TYPE_ARRAY:
-					updateTiles = [selectedTilePositions[selectedTilePosition]]
-				else:
-					updateTiles = selectedTilePositions[selectedTilePosition]
-				
-				for updateTile in updateTiles:
-					var tile = determine_tile(updateTile, selectedTilePosition)
-					if _map.hasWorldPosition(updateTile):
-						var height = _map.getDataFromPos(updateTile)
-						var heightLayer = height.getHeight(0)
-						heightLayer.updateTerrianTiles(tile)
-						removeAllTiles(updateTile)
-						buildTiles(height)
+			for placedTile in placedTiles:
+				removeAllTiles(placedTile.getWorldPosition())
+				buildTiles(placedTile)
 
-
-func determine_tile(position: Vector2, type : int):
-	var tile
-	match type:
-		DiamondPlacement.TOP:
-			tile = _tileFactory.create(DiamondPlacement.TOP, _tileId, position, Vector2.ZERO)
-		DiamondPlacement.LEFT:
-			tile = _tileFactory.create(DiamondPlacement.LEFT, _tileId, position, Vector2(1,0))
-		DiamondPlacement.RIGHT:
-			tile = _tileFactory.create(DiamondPlacement.RIGHT, _tileId, position, Vector2.ZERO)
-		DiamondPlacement.BOTTOM:
-			tile = _tileFactory.create(DiamondPlacement.BOTTOM, _tileId, position, Vector2(0,1))
-		DiamondPlacement.TOP_LEFT:
-			tile = _tileFactory.create(DiamondPlacement.TOP_LEFT, _tileId, position,Vector2.ZERO)
-		DiamondPlacement.TOP_RIGHT:
-			tile = _tileFactory.create(DiamondPlacement.TOP_RIGHT, _tileId, position, Vector2(1,0))
-		DiamondPlacement.BOTTOM_LEFT:
-			tile = _tileFactory.create(DiamondPlacement.BOTTOM_LEFT, _tileId, position, Vector2(0,1))
-		DiamondPlacement.BOTTOM_RIGHT:
-			tile = _tileFactory.create(DiamondPlacement.BOTTOM_RIGHT, _tileId, position, Vector2(1,1))
-		_:
-			var flip = Vector2(randi() % 2, randi() % 2)
-			tile = _tileFactory.create(
-				DiamondPlacement.SURROUNDED,
-				_tileId,
-				position,
-				flip
-			)
-	return tile
-	
 
 func setTileId(id : int):
 	_tileId = id
-
 	
 func removeAllTiles(worldPosition : Vector2):
 	for heightNode in _heightNodes:
@@ -109,8 +76,8 @@ func buildTiles(tileHeights : Height):
 				var flip = tile.getFlip()
 				var tileMap = tileMapLayer[tileIndex]
 				tileMap.set_cell(
-					tile.getWorldPosition().x,
-					tile.getWorldPosition().y,
+					tileHeights.getWorldPosition().x,
+					tileHeights.getWorldPosition().y,
 					tile.getTileId(),
 					flip.x,
 					flip.y,
@@ -119,8 +86,8 @@ func buildTiles(tileHeights : Height):
 				)
 						
 				_tileMapOutLine.set_cell(
-					tileLayer.getWorldPosition().x,
-					tileLayer.getWorldPosition().y,
+					tileHeights.getWorldPosition().x,
+					tileHeights.getWorldPosition().y,
 					0,
 					false,
 					false,
